@@ -1,105 +1,85 @@
-<h1 align="center">🌟 My Wallet - Expense tracking app 🌟</h1>
+<h1 align="center">💰 Expense Tracker</h1>
 
 <p align="center">
   <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20Boot-darkgreen?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/React.js-blue?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/mysql-red?style=for-the-badge">
-  <img alt="Static Badge" src="https://img.shields.io/badge/css-purple?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/jwt-orange?style=for-the-badge">
 </p>
 
-## Table of contents
+## Table of Contents
 
-1. [Descripiton](#description)
-2. [How to run?](#how-to-run)
-3. [Screenshots](#screenshots)
+1. [Description](#description)
+2. [Tech Stack](#tech-stack)
+3. [Features](#features)
+4. [How to Run](#how-to-run)
 
 ## Description
 
-- Developed a full-stack expense tracking web application using Spring Boot, React.js, and MySQL, facilitating seamless management of day-to-day finances.
-- Implemented multi-role functionality with user authentication, enabling secure access for both users and administrators, with features such as sign-in, sign-up, password reset, and email verification.
-- Developed intuitive user dashboards, transaction management, upcoming/recurring transactions tracking, monthly summaries, and statistics, budget management.
-- Developed categories, users and transactions management for administrators.
-- Implemented management capabilities including search, filter and pagination.
+A full-stack expense tracking web application for managing day-to-day finances, with secure authentication, transaction management, budgeting, and admin controls.
 
-## How to run?
+## Tech Stack
 
-### Step 1: Fork and Clone the Repository
+- **Backend:** Spring Boot, Spring Security, JWT
+- **Frontend:** React.js
+- **Database:** MySQL
 
-1. Fork the repository to your GitHub account.
+## Features
 
-2. Clone the forked repository to your local machine.
+- User authentication with sign-up, sign-in, email verification, and password reset
+- Role-based access for regular users and administrators
+- Transaction management with support for recurring/saved transactions
+- Monthly summaries and spending statistics
+- Budget tracking
+- Admin panel for managing categories, users, and transactions with search, filter, and pagination
+
+## How to Run
+
+### 1. Clone the repository
 
 ```sh
-git clone https://github.com/<your-username>/Fullstack-Expense-Tracker
+git clone https://github.com/Karthikeya12724/Expense_Tracker.git
+cd Expense_Tracker
 ```
 
-### Step 2: Setting up e-mail and database configurations
+### 2. Set up the database
 
-- Configure the following credentials in the [`application.properties`](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/main/backend/src/main/resources/application.properties) file.
+Create a MySQL database:
+
+```sql
+CREATE DATABASE expense_tracker;
+```
+
+### 3. Configure the backend
+
+Copy `backend/src/main/resources/application.properties.example` to `application.properties` in the same folder, then fill in your own values:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/YOUR_DATABASE_NAME
-spring.datasource.username=YOUR_USERNAME
-spring.datasource.password=YOUR_PASSWORD
+spring.datasource.url=jdbc:mysql://localhost:3306/expense_tracker
+spring.datasource.username=YOUR_MYSQL_USERNAME
+spring.datasource.password=YOUR_MYSQL_PASSWORD
 
-spring.mail.username=YOUR_USERNAME
-spring.mail.password=YOUR_PASSWORD
+spring.mail.username=YOUR_EMAIL
+spring.mail.password=YOUR_EMAIL_APP_PASSWORD
 ```
 
-### Step 3: Run the backend.
+> **Note:** Java 21 is required. If you have a newer JDK installed, set `JAVA_HOME` to a JDK 21 installation before running the backend, since some dependencies (Lombok) aren't yet compatible with newer JDKs.
 
-- Run the backend application. It will automatically create the required tables. 
-- Add some custom data manually in the [categories](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/Category.java#L13) table for both [type](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/TransactionType.java#L13) `expense` and `income`.
-- To start as admin, Insert a new user manually with role admin in [`users`](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/blob/7ecea71aaeca4e26a4aafd02fd602abe4d9da67d/backend/src/main/java/com/fullStack/expenseTracker/models/User.java#L20) table.
+### 4. Run the backend
 
-### Step 4: Run the frontend
-
-1. Navigate to [frontend direcory](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/tree/main/frontend).
-```
-cd ./frontend
+```sh
+cd backend
+./mvnw spring-boot:run
 ```
 
-2. Install dependencies.
-```
+This automatically creates the required tables and seeds transaction types. You'll need to manually add category rows for both `expense` and `income` types, and manually insert a user with the `admin` role if you want admin access.
+
+### 5. Run the frontend
+
+```sh
+cd frontend
 npm install
-```
-
-3. Run the app.
-```
 npm start
 ```
 
-Access the application at [`http://localhost:3000/`](http://localhost:3000/).
-To get started create a new account using your email.
-
-## Screenshots
-
-![Screenshot 2024-04-18 091658](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/7637b70d-8b9f-485e-84f6-bce3c940f3f2)
-![Screenshot 2024-04-18 091720](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/f58e2e13-7db4-439a-b371-ce9b6e5838c7)
-![Screenshot 2024-04-18 091743](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/dbcfdbd2-d515-4197-b5ff-11ba0aed2dcf)
-![Screenshot 2024-04-18 091803](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/9d271a52-1444-4739-afe4-f51aa616d55e)
-
-Users's stuff
-
-![Screenshot 2024-04-22 153501](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/a8e6d65b-626f-493e-922d-dd7c26d8294c)
-![Screenshot 2024-04-22 153536](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/ed01d05e-cead-43c5-8959-6b64615fee43)
-![Screenshot 2024-04-22 153556](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/40ab0b82-b38d-4a19-9044-d226e3f345ed)
-![Screenshot 2024-04-22 153622](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/8f8bef4e-6735-464f-a180-f2bc17633b1b)
-![Screenshot 2024-04-22 154204](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/994d23f0-e7c1-42a6-9571-44fd4353396e)
-![Screenshot 2024-04-22 154244](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/7e43cb13-6187-4af0-8900-66afef908f66)
-![Screenshot 2024-04-22 154301](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/1b308447-f5ef-4f26-826b-0e9f42e5914f)
-
-
-
-Admin's stuff
-
-![Screenshot 2024-04-18 092245](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/06454812-f542-4404-b9bf-e7d9b96b043d)
-![Screenshot 2024-04-18 092306](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/a024fadc-5f6a-4e3f-96f6-f38dd1f6b477)
-![Screenshot 2024-04-18 092325](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/5e93095e-f4be-4245-b3a4-8653cd9fea27)
-![Screenshot 2024-04-18 092342](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/5d40498e-ec3b-4559-ba15-efdf9c248d22)
-![Screenshot 2024-04-18 092805](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/aa94d2da-0080-421b-a191-d2ff9fb4472f)
-![Screenshot 2024-04-18 092822](https://github.com/DharshiBalasubramaniyam/Fullstack-Expense-Tracker/assets/139672976/6cb49c2c-8317-4cec-ad16-b9496d97b16f)
-
-
-
+Visit [`http://localhost:3000/`](http://localhost:3000/) and create an account to get started.
