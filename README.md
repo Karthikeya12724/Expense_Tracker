@@ -1,7 +1,8 @@
 <h1 align="center">💰 Expense Tracker</h1>
 
 <p align="center">
-  <img alt="Static Badge" src="https://img.shields.io/badge/Spring%20Boot-darkgreen?style=for-the-badge">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Node.js-darkgreen?style=for-the-badge">
+  <img alt="Static Badge" src="https://img.shields.io/badge/Express-black?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/React.js-blue?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/mysql-red?style=for-the-badge">
   <img alt="Static Badge" src="https://img.shields.io/badge/jwt-orange?style=for-the-badge">
@@ -20,7 +21,7 @@ A full-stack expense tracking web application for managing day-to-day finances, 
 
 ## Tech Stack
 
-- **Backend:** Spring Boot, Spring Security, JWT
+- **Backend:** Node.js, Express, JWT
 - **Frontend:** React.js
 - **Database:** MySQL
 
@@ -50,29 +51,43 @@ Create a MySQL database:
 CREATE DATABASE expense_tracker;
 ```
 
-### 3. Configure the backend
+If starting completely fresh (no existing tables), run the schema script:
 
-Copy `backend/src/main/resources/application.properties.example` to `application.properties` in the same folder, then fill in your own values:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/expense_tracker
-spring.datasource.username=YOUR_MYSQL_USERNAME
-spring.datasource.password=YOUR_MYSQL_PASSWORD
-
-spring.mail.username=YOUR_EMAIL
-spring.mail.password=YOUR_EMAIL_APP_PASSWORD
+```sh
+mysql -u root -p expense_tracker < node-backend/schema.sql
 ```
 
-> **Note:** Java 21 is required. If you have a newer JDK installed, set `JAVA_HOME` to a JDK 21 installation before running the backend, since some dependencies (Lombok) aren't yet compatible with newer JDKs.
+### 3. Configure the backend
+
+Copy `node-backend/.env.example` to `node-backend/.env` and fill in your own values:
+
+```properties
+DB_HOST=localhost
+DB_PORT=3306
+DB_NAME=expense_tracker
+DB_USER=YOUR_MYSQL_USERNAME
+DB_PASSWORD=YOUR_MYSQL_PASSWORD
+
+JWT_SECRET=some_long_random_secret_string
+JWT_EXPIRATION_MS=86400000
+
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USER=YOUR_EMAIL
+MAIL_PASSWORD=YOUR_EMAIL_APP_PASSWORD
+```
+
+> **Note:** `MAIL_PASSWORD` should be a Gmail **App Password** (requires 2-Step Verification enabled on the Google account), not your regular Gmail password.
 
 ### 4. Run the backend
 
 ```sh
-cd backend
-./mvnw spring-boot:run
+cd node-backend
+npm install
+npm start
 ```
 
-This automatically creates the required tables and seeds transaction types. You'll need to manually add category rows for both `expense` and `income` types, and manually insert a user with the `admin` role if you want admin access.
+This automatically seeds the required roles and transaction types on first run. You'll need to manually add category rows for both `expense` and `income` types, and manually insert a user with the `ROLE_ADMIN` role if you want admin access.
 
 ### 5. Run the frontend
 
